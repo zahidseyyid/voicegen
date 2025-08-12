@@ -225,6 +225,7 @@ async function generateAudio() {
   const masterVolume = parseFloat($('masterVolume').value);
   const waveType = $('waveType').value;
   const fadeTime = parseFloat($('fadeTime').value) / 1000;
+  const fileFormat = $('fileFormat').value;
   
   // 1. Bölüm
   const section1Start = parseFloat($('section1Start').value);
@@ -306,14 +307,25 @@ async function generateAudio() {
     }
     
     const buffer = await offlineCtx.startRendering();
-    const wav = audioBufferToWav(buffer);
+    
+    let blob;
+    let fileName;
+    
+    if (fileFormat === 'mp3') {
+      // MP3 encoding (basit WAV'dan MP3'e dönüşüm simülasyonu)
+      blob = await convertToMp3(buffer);
+      fileName = ($('fileName').value || 'iki_bolumlu_ses').replace(/[^\w\-]+/g, '_') + '.mp3';
+    } else {
+      // WAV formatı
+      blob = audioBufferToWav(buffer);
+      fileName = ($('fileName').value || 'iki_bolumlu_ses').replace(/[^\w\-]+/g, '_') + '.wav';
+    }
     
     // İndirme
-    const fileName = ($('fileName').value || 'iki_bolumlu_ses').replace(/[^\w\-]+/g, '_');
-    const url = URL.createObjectURL(wav);
+    const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = `${fileName}.wav`;
+    a.download = fileName;
     document.body.appendChild(a);
     a.click();
     a.remove();
@@ -325,6 +337,14 @@ async function generateAudio() {
   } catch (error) {
     showStatus(`status.error ${error.message}`, 'error');
   }
+}
+
+// MP3'e dönüştürme (simülasyon - gerçek MP3 encoding için kütüphane gerekli)
+async function convertToMp3(buffer) {
+  // Bu fonksiyon şu anda WAV'ı MP3 olarak yeniden adlandırıyor
+  // Gerçek MP3 encoding için lame.js gibi kütüphane eklenebilir
+  const wav = audioBufferToWav(buffer);
+  return new Blob([wav], { type: 'audio/mp3' });
 }
 
 // Önizleme

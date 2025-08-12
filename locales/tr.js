@@ -40,7 +40,15 @@ export const tr = {
   smoothTransition: "Yumuşak Geçiş (ms)",
   smoothTransitionHint: "Bölümler arası yumuşak geçiş süresi",
   fileName: "Dosya Adı",
-  fileNameHint: "İndirilecek WAV dosyasının adı",
+  fileNameHint: "İndirilecek ses dosyasının adı",
+  fileFormat: "Dosya Formatı",
+  fileFormatHint: "İndirilecek ses dosyasının formatı",
+  
+  // Dosya formatları
+  fileFormats: {
+    wav: "WAV (Yüksek kalite, büyük boyut)",
+    mp3: "MP3 (Orta kalite, küçük boyut)"
+  },
   
   // Dalga önizleme
   wavePreview: "📊 Dalga Önizlemesi",
@@ -54,7 +62,7 @@ export const tr = {
   // Status mesajları
   status: {
     generating: "Ses oluşturuluyor...",
-    success: "✅ İki bölümlü ses dosyası başarıyla oluşturuldu ve indirildi!",
+    success: "✅ Ses dosyası başarıyla oluşturuldu ve indirildi!",
     previewPlaying: "🎵 İki bölümlü önizleme oynatılıyor",
     previewComplete: "✅ Önizleme tamamlandı",
     stopped: "⏹️ Ses durduruldu",

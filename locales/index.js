@@ -153,6 +153,11 @@ function updateAllTexts() {
   updateElementText('fadeTimeHint', 'smoothTransitionHint');
   updateElementText('fileNameLabel', 'fileName');
   updateElementText('fileNameHint', 'fileNameHint');
+  updateElementText('fileFormatLabel', 'fileFormat');
+  updateElementText('fileFormatHint', 'fileFormatHint');
+  
+  // Dosya formatları
+  updateFileFormatOptions();
   
   // Dalga önizleme
   updateElementText('wavePreviewTitle', 'wavePreview');
@@ -192,6 +197,25 @@ function updateWaveTypeOptions() {
         option.selected = true;
       }
       waveTypeSelect.appendChild(option);
+    });
+  }
+}
+
+// Dosya format seçeneklerini güncelle
+function updateFileFormatOptions() {
+  const fileFormatSelect = document.getElementById('fileFormat');
+  if (fileFormatSelect) {
+    const currentValue = fileFormatSelect.value;
+    fileFormatSelect.innerHTML = '';
+    
+    Object.keys(t('fileFormats')).forEach(key => {
+      const option = document.createElement('option');
+      option.value = key;
+      option.textContent = t(`fileFormats.${key}`);
+      if (key === currentValue) {
+        option.selected = true;
+      }
+      fileFormatSelect.appendChild(option);
     });
   }
 }

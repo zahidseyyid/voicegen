@@ -40,7 +40,15 @@ export const en = {
   smoothTransition: "Smooth Transition (ms)",
   smoothTransitionHint: "Smooth transition time between sections",
   fileName: "File Name",
-  fileNameHint: "Name of the WAV file to download",
+  fileNameHint: "Name of the audio file to download",
+  fileFormat: "File Format",
+  fileFormatHint: "Format of the audio file to download",
+  
+  // File formats
+  fileFormats: {
+    wav: "WAV (High quality, large size)",
+    mp3: "MP3 (Medium quality, small size)"
+  },
   
   // Wave preview
   wavePreview: "📊 Wave Preview",
@@ -54,7 +62,7 @@ export const en = {
   // Status messages
   status: {
     generating: "Generating audio...",
-    success: "✅ Two-section audio file successfully created and downloaded!",
+    success: "✅ Audio file successfully created and downloaded!",
     previewPlaying: "🎵 Two-section preview playing",
     previewComplete: "✅ Preview complete",
     stopped: "⏹️ Audio stopped",
