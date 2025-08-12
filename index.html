@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Basit Ses Dalgası Oluşturucu</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="wrap">
+    <div class="header-controls">
+      <select id="languageSelector">
+        <option value="tr">Türkçe</option>
+        <option value="en">English</option>
+      </select>
+    </div>
+    
+    <h1>🎵 Basit Ses Dalgası Oluşturucu</h1>
+    
+    <div class="card">
+      <h2 id="basicSettings">🎛️ Temel Ayarlar</h2>
+      <div class="grid">
+        <div class="field">
+          <label id="totalDurationLabel">Toplam Süre (saniye)</label>
+          <input id="totalDuration" type="number" min="1" max="60" step="1" value="8">
+          <div id="totalDurationHint" class="hint">Ses dosyasının toplam uzunluğu</div>
+        </div>
+        <div class="field">
+          <label id="masterVolumeLabel">Master Ses Seviyesi</label>
+          <input id="masterVolume" type="number" min="0.1" max="1" step="0.1" value="0.8">
+          <div id="masterVolumeHint" class="hint">Genel ses seviyesi çarpanı</div>
+        </div>
+        <div class="field">
+          <label id="waveTypeLabel">Dalga Tipi</label>
+          <select id="waveType">
+            <option value="sine">Sinus Dalgası (yumuşak ses)</option>
+            <option value="square">Kare Dalga (dijital ses)</option>
+            <option value="sawtooth">Testere Dalgası (metalik ses)</option>
+            <option value="triangle">Üçgen Dalga (yumuşak ama keskin)</option>
+          </select>
+          <div id="waveTypeHint" class="hint">Farklı dalga tipleri farklı ses karakterleri verir</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2 id="section1Title">🔊 1. Bölüm - Düşük Ses</h2>
+      <div class="grid">
+        <div class="field">
+          <label id="section1StartLabel">Başlangıç Zamanı (saniye)</label>
+          <input id="section1Start" type="number" min="0" max="60" step="0.1" value="0">
+          <div id="section1StartHint" class="hint">Bu bölümün ne zaman başlayacağı</div>
+        </div>
+        <div class="field">
+          <label id="section1EndLabel">Bitiş Zamanı (saniye)</label>
+          <input id="section1End" type="number" min="0" max="60" step="0.1" value="3">
+          <div id="section1EndHint" class="hint">Bu bölümün ne zaman biteceği</div>
+        </div>
+        <div class="field">
+          <label id="section1FreqLabel">Frekans (Hz)</label>
+          <input id="section1Freq" type="number" min="20" max="20000" step="10" value="200">
+          <div id="section1FreqHint" class="hint">Düşük ses için düşük frekans (200 Hz = kalın ses)</div>
+        </div>
+        <div class="field">
+          <label id="section1VolumeLabel">Ses Seviyesi (0..1)</label>
+          <input id="section1Volume" type="number" min="0.1" max="1" step="0.1" value="0.2">
+          <div id="section1VolumeHint" class="hint">Düşük ses seviyesi (0.2 = çok düşük)</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2 id="section2Title">🔊 2. Bölüm - Yüksek Ses</h2>
+      <div class="grid">
+        <div class="field">
+          <label id="section2StartLabel">Başlangıç Zamanı (saniye)</label>
+          <input id="section2Start" type="number" min="0" max="60" step="0.1" value="3">
+          <div id="section2StartHint" class="hint">Bu bölümün ne zaman başlayacağı</div>
+        </div>
+        <div class="field">
+          <label id="section2EndLabel">Bitiş Zamanı (saniye)</label>
+          <input id="section2End" type="number" min="0" max="60" step="0.1" value="8">
+          <div id="section2EndHint" class="hint">Bu bölümün ne zaman biteceği</div>
+        </div>
+        <div class="field">
+          <label id="section2FreqLabel">Frekans (Hz)</label>
+          <input id="section2Freq" type="number" min="20" max="20000" step="10" value="800">
+          <div id="section2FreqHint" class="hint">Yüksek ses için yüksek frekans (800 Hz = tiz ses)</div>
+        </div>
+        <div class="field">
+          <label id="section2VolumeLabel">Ses Seviyesi (0..1)</label>
+          <input id="section2Volume" type="number" min="0.1" max="1" step="0.1" value="0.8">
+          <div id="section2VolumeHint" class="hint">Yüksek ses seviyesi (0.8 = yüksek)</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2 id="effectSettingsTitle">🎵 Efekt Ayarları</h2>
+      <div class="grid">
+        <div class="field">
+          <label id="fadeTimeLabel">Yumuşak Geçiş (ms)</label>
+          <input id="fadeTime" type="number" min="0" max="1000" step="50" value="100">
+          <div id="fadeTimeHint" class="hint">Bölümler arası yumuşak geçiş süresi</div>
+        </div>
+        <div class="field">
+          <label id="fileNameLabel">Dosya Adı</label>
+          <input id="fileName" type="text" value="iki_bolumlu_ses">
+          <div id="fileNameHint" class="hint">İndirilecek WAV dosyasının adı</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="wave-preview">
+      <h3 id="wavePreviewTitle">📊 Dalga Önizlemesi</h3>
+      <canvas id="waveCanvas" width="600" height="120"></canvas>
+      <div id="wavePreviewHint" class="hint">İki bölümün nasıl görüneceği - mavi: 1. bölüm, yeşil: 2. bölüm</div>
+    </div>
+
+    <div class="actions">
+      <button class="primary" id="btnGenerate">🎵 Ses Oluştur ve İndir</button>
+      <button class="secondary" id="btnPreview">▶️ Önizle</button>
+      <button class="warning" id="btnStop">⏹️ Durdur</button>
+    </div>
+
+    <div id="status" class="status info" style="display: none;"></div>
+  </div>
+
+  <script type="module" src="locales/index.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
+
